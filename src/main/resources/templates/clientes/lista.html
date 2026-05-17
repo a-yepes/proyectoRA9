@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes - Taller mecánico</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header>
+    <h1>Taller mecánico</h1>
+    <nav>
+        <a th:href="@{/web/clientes}">Clientes</a>
+        <a th:href="@{/web/reparaciones}">Reparaciones</a>
+    </nav>
+</header>
+<main>
+    <div class="barra">
+        <h2>Clientes</h2>
+        <a class="boton" th:href="@{/web/clientes/nueva}">Nuevo cliente</a>
+    </div>
+
+    <form class="filtros" method="get" th:action="@{/web/clientes}">
+        <input type="text" name="nombre" placeholder="Filtrar por nombre" th:value="${nombre}">
+        <input type="text" name="matricula" placeholder="Filtrar por matrícula" th:value="${matricula}">
+        <button type="submit">Filtrar</button>
+        <a th:href="@{/web/clientes}">Limpiar</a>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Matrícula</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cliente : ${clientes}">
+            <td th:text="${cliente.id}"></td>
+            <td th:text="${cliente.nombre}"></td>
+            <td th:text="${cliente.telefono}"></td>
+            <td th:text="${cliente.email}"></td>
+            <td th:text="${cliente.matricula}"></td>
+            <td class="acciones">
+                <a th:href="@{/web/clientes/{id}(id=${cliente.id})}">Detalle</a>
+                <a th:href="@{/web/clientes/editar/{id}(id=${cliente.id})}">Editar</a>
+                <form method="post" th:action="@{/web/clientes/borrar/{id}(id=${cliente.id})}">
+                    <button type="submit" onclick="return confirm('¿Borrar cliente y sus reparaciones?')">Borrar</button>
+                </form>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(clientes)}">
+            <td colspan="6">No hay clientes.</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

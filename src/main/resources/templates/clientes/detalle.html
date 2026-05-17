@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle cliente</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header>
+    <h1>Taller mecánico</h1>
+    <nav>
+        <a th:href="@{/web/clientes}">Clientes</a>
+        <a th:href="@{/web/reparaciones}">Reparaciones</a>
+    </nav>
+</header>
+<main>
+    <div class="barra">
+        <h2 th:text="${cliente.nombre}"></h2>
+        <a class="boton" th:href="@{/web/reparaciones/nueva(clienteId=${cliente.id})}">Añadir reparación</a>
+    </div>
+    <section class="tarjeta">
+        <p><strong>Teléfono:</strong> <span th:text="${cliente.telefono}"></span></p>
+        <p><strong>Email:</strong> <span th:text="${cliente.email}"></span></p>
+        <p><strong>Matrícula:</strong> <span th:text="${cliente.matricula}"></span></p>
+        <p><strong>Gasto total:</strong> <span th:text="${#numbers.formatDecimal(gastoTotal, 1, 2)} + ' €'"></span></p>
+    </section>
+
+    <h3>Reparaciones del cliente</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Descripción</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+            <th>Coste</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="reparacion : ${reparaciones}">
+            <td th:text="${reparacion.id}"></td>
+            <td th:text="${reparacion.descripcion}"></td>
+            <td th:text="${reparacion.fechaEntrada}"></td>
+            <td th:text="${reparacion.fechaSalida ?: '-'}"></td>
+            <td th:text="${#numbers.formatDecimal(reparacion.costeEuros, 1, 2)} + ' €'"></td>
+            <td th:text="${reparacion.estado}"></td>
+            <td><a th:href="@{/web/reparaciones/{id}(id=${reparacion.id})}">Ver</a></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(reparaciones)}">
+            <td colspan="7">Este cliente todavía no tiene reparaciones.</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+</body>
+</html>

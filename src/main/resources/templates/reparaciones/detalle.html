@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle reparación</title>
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
+</head>
+<body>
+<header>
+    <h1>Taller mecánico</h1>
+    <nav>
+        <a th:href="@{/web/clientes}">Clientes</a>
+        <a th:href="@{/web/reparaciones}">Reparaciones</a>
+    </nav>
+</header>
+<main>
+    <div class="barra">
+        <h2>Reparación #<span th:text="${reparacion.id}"></span></h2>
+        <a class="boton" th:href="@{/web/reparaciones/editar/{id}(id=${reparacion.id})}">Editar</a>
+    </div>
+    <section class="tarjeta">
+        <p><strong>Cliente:</strong> <a th:href="@{/web/clientes/{id}(id=${reparacion.cliente.id})}" th:text="${reparacion.cliente.nombre}"></a></p>
+        <p><strong>Matrícula:</strong> <span th:text="${reparacion.cliente.matricula}"></span></p>
+        <p><strong>Descripción:</strong> <span th:text="${reparacion.descripcion}"></span></p>
+        <p><strong>Fecha entrada:</strong> <span th:text="${reparacion.fechaEntrada}"></span></p>
+        <p><strong>Fecha salida:</strong> <span th:text="${reparacion.fechaSalida ?: '-'}"></span></p>
+        <p><strong>Coste:</strong> <span th:text="${#numbers.formatDecimal(reparacion.costeEuros, 1, 2)} + ' €'"></span></p>
+        <p><strong>Estado:</strong> <span th:text="${reparacion.estado}"></span></p>
+    </section>
+</main>
+</body>
+</html>

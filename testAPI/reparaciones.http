@@ -1,0 +1,41 @@
+### Listar reparaciones
+GET http://localhost:8080/api/reparaciones
+
+### Filtrar reparaciones por estado
+GET http://localhost:8080/api/reparaciones?estado=en curso
+
+### Filtrar reparaciones por cliente y fechas
+GET http://localhost:8080/api/reparaciones?clienteId=1&desde=2026-05-01&hasta=2026-05-31
+
+### Crear reparación para cliente 1
+POST http://localhost:8080/api/reparaciones?clienteId=1
+Content-Type: application/json
+
+{
+  "descripcion": "Cambio de embrague",
+  "fechaEntrada": "2026-05-16",
+  "fechaSalida": null,
+  "costeEuros": 450.00,
+  "estado": "en curso"
+}
+
+### Obtener reparación por ID
+GET http://localhost:8080/api/reparaciones/1
+
+### Actualizar reparación y reasignarla a cliente 2
+PUT http://localhost:8080/api/reparaciones/1?clienteId=2
+Content-Type: application/json
+
+{
+  "descripcion": "Cambio de aceite y filtros",
+  "fechaEntrada": "2026-05-04",
+  "fechaSalida": "2026-05-05",
+  "costeEuros": 100.00,
+  "estado": "finalizado"
+}
+
+### Reparaciones abiertas entre fechas
+GET http://localhost:8080/api/reparaciones/abiertas?desde=2026-05-01&hasta=2026-05-31
+
+### Borrar reparación
+DELETE http://localhost:8080/api/reparaciones/5
