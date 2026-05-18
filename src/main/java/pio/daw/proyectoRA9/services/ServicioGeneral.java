@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service // tiene la logica (CRUD)
-@Transactional
+@Transactional //para que las operaciones se ejecuten dentro de una transaccion
 public class ServicioGeneral {
 
     private final ClienteRepository clienteRepository;
@@ -48,7 +48,7 @@ public class ServicioGeneral {
         }
     }
 
-    public Cliente guardarCliente(Cliente cliente) { 
+    public Cliente guardarCliente(Cliente cliente) {
         String matricula = cliente.getMatricula();
 
         if (matricula != null) {
