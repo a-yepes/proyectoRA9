@@ -8,7 +8,7 @@ import java.util.Optional;
 
 //repository:accede a la base de datos
  
-public interface ClienteRepository extends JpaRepository<Cliente, Long> {//para tener los metodos
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {//para tener los metodos automaticamente
     //buscar un nombre en mayusculas o minusculas
     List<Cliente> findByNombreContainingIgnoreCase(String nombre);
 

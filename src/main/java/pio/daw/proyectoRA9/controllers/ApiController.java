@@ -34,7 +34,7 @@ public class ApiController {
     }
 
     @PostMapping("/clientes")
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED)// para que cuando este creado, lance el mensaje
     public Cliente crearCliente( @RequestBody Cliente cliente) {
         return servicio.guardarCliente(cliente); //recibe el json con clientes y lo guarda en la bd
     }
