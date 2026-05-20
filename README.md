@@ -14,7 +14,7 @@ Atributos: id, descripción, fechaEntrada, fechaSalida, costeEuros, estado
 Un cliente puede tener varias reparaciones @OneToMany, pero cada reparación solo pertenece a un cliente @ManyToOne
 Al borrar un cliente se eliminan también sus reparaciones
 
-# ¿Con qué lo he hecho?
+## ¿Con qué lo he hecho?
 - Java
 - Spring Boot
 - Spring Web
@@ -23,11 +23,16 @@ Al borrar un cliente se eliminan también sus reparaciones
 - MySQL
 - Docker
 
-# ¿Cómo ejecutar el proyecto?
-Con Docker: docker compose up --build 
-Sin Docker: mvn spring-boot:run
+## ¿Cómo ejecutar el proyecto?
+docker compose up --build
 
-# ¿Qué funciones tiene?
+mvn spring-boot:run
+
+Navegador: https://localhost:8080
+
+Puerto: 13307:3306
+
+## ¿Qué funciones tiene?
 Es un CRUD: 
 
 - Cliente: 
