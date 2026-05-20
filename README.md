@@ -12,6 +12,7 @@ Atributos: id, descripción, fechaEntrada, fechaSalida, costeEuros, estado
 
 ## Relaciones JPA
 Un cliente puede tener varias reparaciones @OneToMany, pero cada reparación solo pertenece a un cliente @ManyToOne
+
 Al borrar un cliente se eliminan también sus reparaciones
 
 ## ¿Con qué lo he hecho?
