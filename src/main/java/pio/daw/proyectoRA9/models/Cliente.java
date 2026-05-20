@@ -26,7 +26,7 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El nombre es obligatorio")//para validar que no este vacio
+    @NotBlank(message = "El nombre es obligatorio")//para validar que no este vacio el campo
     private String nombre;
 
     @NotBlank(message = "El telefono es obligatorio")
